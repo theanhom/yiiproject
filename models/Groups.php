@@ -40,4 +40,8 @@ class Groups extends \yii\db\ActiveRecord
             'name' => 'กลุ่มงาน',
         ];
     }
+    //สร้าง Relation ของตาราง เพื่อแสดงชื่อแทน ID
+    public function getGroupdep(){
+        return $this->hasMany(Departments::className(), ['group_id'=>'id']);
+    }
 }
