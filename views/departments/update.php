@@ -12,10 +12,16 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="departments-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+<!--    <h1><?= Html::encode($this->title) ?></h1>-->
+    <div class="panel-primary">
+        <div class="panel-heading"><h4><i class="glyphicon glyphicon-edit"></i> แก้ไขหน่วยงาน</h4></div>
+        <div class="panel-body">
+            <?=
+            $this->render('_form', [
+                'model' => $model,
+            ])
+            ?>
+        </div>
+    </div>
 
 </div>
