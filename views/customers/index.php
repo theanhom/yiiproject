@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="customers-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Customers', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> เพิ่มข้อมูล', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,27 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'name',
             'addr',
             't',
             'a',
-            // 'c',
-            // 'birthday',
-            // 'cid',
-            // 'p',
-            // 'tel',
-            // 'work',
-            // 'department_id',
-            // 'group_id',
-            // 'position_id',
-            // 'interest',
-            // 'avatar',
-            // 'fb',
-            // 'line',
-            // 'email:email',
-            // 'createdate',
-            // 'updatedate',
+             'c',
+//             'birthday',
+//             'cid',
+             'p',
+             'tel',
+             'work',
+             'department_id',
+             'group_id',
+             'position_id',
+//             'interest',
+//             'avatar',
+//             'fb',
+//             'line',
+//             'email:email',
+//             'createdate',
+//             'updatedate',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

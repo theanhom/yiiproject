@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'group_id')->dropDownList(
+    <?= $form->field($model, 'group_id')->dropDownList(//dropdownlist ของ yii2
             \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(), 'id', 'name'), [
         'prompt' => '<---ระบุกลุ่มงาน--->'
             ]

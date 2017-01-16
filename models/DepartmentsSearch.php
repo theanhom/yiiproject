@@ -58,14 +58,14 @@ class DepartmentsSearch extends Departments
         }
 
         // grid filtering conditions
-        $dataProvider->query->joinWith('depgroup');
+        $dataProvider->query->joinWith('depgroup');//ค้นหาข้อมูลจากการทำ relation
         $query->andFilterWhere([
             'id' => $this->id,
             //'group_id' => $this->group_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-              ->andFilterWhere(['like', 'groups.name', $this->group_id]);
+              ->andFilterWhere(['like', 'groups.name', $this->group_id]);//ค้นหาข้อมูลจากการทำ relation
 
         return $dataProvider;
     }
