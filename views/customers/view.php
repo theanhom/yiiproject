@@ -1,11 +1,8 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Customers */
-
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,35 +21,49 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+<?= Html::img('avatars/'.$model->avatar,['class'=>'thumbnail img-responsive','style'=>'width: 50 px;'])?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'name',
-            'addr',
-            't',
+            'addr', 
             [
-              'attribute'=>'t',
-              'value'=>$model->custmb->name
+                'attribute'=>'c',
+                'value'=>$model->cuschw->name
             ],
-            'a',
-            'c',
+            [
+                'attribute'=>'a',
+                'value'=>$model->cusamp->name
+            ],
+            [
+                'attribute'=>'t',
+                'value'=>$model->custmb->name
+            ],            
             'birthday',
             'cid',
             'p',
             'tel',
             'work',
-            'department_id',
-            'group_id',
-            'position_id',
-            'interest',
-            'avatar',
+             [
+                'attribute'=>'group_id',
+                'value'=>$model->cusdep->depgroup->name
+            ],
+            [
+                'attribute'=>'department_id',
+                'value'=>$model->cusdep->name
+            ],
+            [
+                'attribute'=>'position_id',
+                'value'=>$model->pos->name
+            ],
+            
+            'interest',           
             'fb',
             'line',
             'email:email',
-            'createdate',
-            'updatedate',
+//            'createdate',
+//            'updatedate',
         ],
     ]) ?>
 
