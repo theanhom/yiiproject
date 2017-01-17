@@ -1,23 +1,33 @@
 <?php
-
 $params = require(__DIR__ . '/params.php');
-
 $config = [
     'id' => 'basic',
-    'language'=>'th_TH',//เปลี่ยนการแสดงให้เปนภาษาไทย
+    'language'=>'th_TH',
+    'name'=>'<img style="height:40px; margin-top:1px;" src="./img/nalin.jpg"> My Project',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'view' => [
+         'theme' => [
+             'pathMap' => [
+                '@app/views' => '@app/themes/adminlte'
+             ],
+         ],
+    ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'VumcGfo--HbhQA-Bb4-gcGt3OKQ83oyu',
+            'cookieValidationKey' => 'iAkUj_6mhDkUCfL4zg_FFIa-g0Arkryw',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
+        ],
+        'authManager' => [
+            'class' => 'dektrium\rbac\components\DbManager',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -48,20 +58,51 @@ $config = [
         ],
         */
     ],
+    'modules'=>[
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module' 
+        ],
+          'user' => [
+            'class' => 'dektrium\user\Module',
+                'enableUnconfirmedLogin' => true,
+                'confirmWithin' => 21600,
+                'cost' => 12,
+                'admins' => ['admin']
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu'
+        ]
+    ],
+    //เอาไว้ตรวจสอบการ login โดยถ้าระบุหน้า page ไหน จะไม่ต้อง login
+     'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            'admin/*',
+            'user/*',
+            'groups/*',
+            'departments/*',
+            'customers/*',
+            'repairs/*',
+            'tools/*',
+            'tooltypes/*',
+            'positions/*',
+            'some-controller/some-action',            
+        ]
+    ],
     'params' => $params,
 ];
-
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
     ];
-
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
 }
-
 return $config;
